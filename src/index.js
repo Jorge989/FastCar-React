@@ -1,17 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { AuthContextProvider } from "./context/AuthContext";
+//aqui ele chama de themProvider nosso contexto direto
+// do context nao direto do hook
+//la ele e retornado como ThemeContext.Provider
+//entendo que ele juntou os dois nomes
+import { ThemeProvider } from "./context/ThemeContext";
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AuthContextProvider>
+      <ThemeProvider value={{ color: "#f3123c" }}>
+        <App />
+      </ThemeProvider>
+    </AuthContextProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

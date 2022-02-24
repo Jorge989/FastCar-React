@@ -1,0 +1,105 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+.login-images {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.login-images img {
+  width: 500px;
+}
+.login-form {
+  max-width: 360px;
+  margin: 60px auto;
+  padding: 20px;
+  background-color: rgb(247, 251, 255);
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px 0.1px #111;
+  z-index: 999;
+}
+.login-form.dark {
+  max-width: 360px;
+  margin: 60px auto;
+  padding: 20px;
+
+  background-color: rgb(10, 10, 10);
+
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px 0.1px #111;
+}
+.login-form h2 {
+  text-align: center;
+}
+.login-form.dark h2 {
+  text-align: center;
+  color: white;
+}
+.login-form label {
+  display: block;
+  display: flex;
+  flex-direction: column;
+  margin: 30px auto;
+}
+.login-form.dark label {
+  display: flex;
+  color: white;
+  width: 100%;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
+  align-items: left;
+  font-size: 15px;
+}
+.login-form span {
+  display: a block;
+  margin-bottom: 6px;
+}
+.login-form input {
+  width: 98%;
+  height: 35px;
+
+  font-size: 15px;
+  color: #333;
+  outline: 0;
+  border: 0px;
+  padding-left: 10px;
+  background-color: rgb(233, 233, 233);
+  border-radius: 10px;
+}
+.login-form button {
+  background-color: #f3123c;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  border: 0;
+  -webkit-box-shadow: 0 8px 12px -8px #f3123c;
+  box-shadow: 0 8px 12px -8px #f3123c;
+  border-radius: 8px;
+  width: 350px;
+  margin-top: 0px;
+  height: 47px;
+}
+.login-form button:hover {
+  background-color: #f21d44;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  border: 0;
+  -webkit-box-shadow: 0 8px 12px -8px #f3123c;
+  box-shadow: 0 8px 12px -8px #f3123c;
+  border-radius: 8px;
+  width: 350px;
+  margin-top: 0px;
+  height: 47px;
+}
