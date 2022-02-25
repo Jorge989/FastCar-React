@@ -1,0 +1,65 @@
+.carros-list-recipe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 100%;
+}
+.carros-list-recipe h2 {
+  margin-top: -10px;
+}
+.card-recipe {
+  background: #fff;
+  color: #333;
+  border-radius: 4px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  flex-direction: column;
+  width: 500px;
+  /* max-width: 700px; */
+
+  margin-bottom: 20px;
+}
+.carros-list-recipe .card-recipe img {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+.card-recipe li {
+  border: 0 !important;
+  outline: 0 !important;
+}
+.card-recipe ul {
+  text-align: center;
+}
+.card-recipe .infos {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  flex-direction: row;
+  margin-top: -10px;
+  color: #555;
+}
+.card-recipe .descricao {
+  text-align: left;
+  padding-left: 0px;
+  padding: 20px 0px 0px 20px;
+  margin-top: 10px;
+  color: #555;
+  margin-bottom: 15px;
+  height: 100%;
+}
+.carros-list-recipe .card-recipe.dark {
+  background: rgb(31, 31, 31);
+}
+.carros-list-recipe .card-recipe.dark p,
+.carros-list-recipe .card-recipe.dark h3,
+.carros-list-recipe .card-recipe.dark div {
+  color: #e4e4e4;
+}

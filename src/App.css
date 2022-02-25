@@ -10,6 +10,7 @@ body {
 .App {
   width: 100%;
   min-height: 100vh !important;
+  background-color: rgb(242, 242, 242);
 }
 .App.dark {
   background-color: rgba(24, 24, 24);

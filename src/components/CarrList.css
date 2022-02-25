@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 0px;
+
   max-width: 1200px;
   margin: 40px auto;
 }
@@ -102,7 +103,7 @@
   display: block;
   background-color: #f3123c;
   background: #a2a2a2;
-  font-size: 0.9rem;
+  font-size: 1rem;
   width: 100px;
   padding: 8px;
   border-radius: 4px;

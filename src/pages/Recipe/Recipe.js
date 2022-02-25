@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
 import { projectFirestore } from "../../firebase/config";
 import { Carousel } from "react-responsive-carousel";
+import Lottie from "react-lottie";
+import * as animationData from "../../assets/orange.json";
 export default function Recipes() {
   const { mode } = useTheme();
   const { id } = useParams();
@@ -13,7 +15,7 @@ export default function Recipes() {
   useEffect(() => {
     setIsPending(true);
     const unsub = projectFirestore
-      .collection("fastcar")
+      .collection("carroslista")
       .doc(id)
       .onSnapshot((doc) => {
         if (doc.exists) {
@@ -26,13 +28,25 @@ export default function Recipes() {
       });
     return () => unsub();
   }, [id]);
-  // const handleClick = () => {
-  //   projectFirestore.collection("fastcar").doc(id).update({});
-  // };
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   return (
     <div className="carros-list-recipe">
       {error && <p className="error">{error}</p>}
-      {isPending && <p className="loading">Loading...</p>}
+      {isPending && (
+        <p>
+          {" "}
+          <div className="lottie">
+            <Lottie options={defaultOptions} height={290} width={290} />
+          </div>
+        </p>
+      )}
       {carro && (
         <>
           {mode === "light" && (
@@ -51,13 +65,13 @@ export default function Recipes() {
               {" "}
               <Carousel>
                 <div>
-                  <img src={carro.image[0]} alt="fusion" />
+                  <img src={carro.img[0]} alt="fusion" />
                 </div>
                 <div>
-                  <img src={carro.image[1]} alt="hb20" />
+                  <img src={carro.img[1]} alt="hb20" />
                 </div>
                 <div>
-                  <img src={carro.image[2]} alt="civic" />
+                  <img src={carro.img[2]} alt="civic" />
                 </div>
               </Carousel>
             </div>
@@ -68,7 +82,7 @@ export default function Recipes() {
               <p>{carro.cambio}</p>
             </div>
             <div className="descricao">
-              {carro.descricao.substring(0, 100)}...
+              {carro.descricao}...
               {/* <button onClick={() => handleClick()}>Atualizar</button> */}
             </div>
           </div>

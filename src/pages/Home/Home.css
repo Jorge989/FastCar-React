@@ -10,3 +10,9 @@
   font-size: 20px;
   color: #222;
 }
+.error.dark {
+  text-align: center;
+  margin: 40px auto;
+  font-size: 20px;
+  color: white;
+}

@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Create.css";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useRef, useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
 import { projectFirestore, projectStorage } from "../../firebase/config";
-
-// import { useFetch } from "../../hooks/useFetch";
 import { useHistory } from "react-router-dom";
+
 export default function Create() {
-  const { authIsReady, user } = useAuthContext();
+  const { user } = useAuthContext();
   const [nome, setNome] = useState("");
   const [marca, setMarca] = useState("");
   const [ano, setAno] = useState("");
@@ -16,15 +15,17 @@ export default function Create() {
   const [descricao, setDescricao] = useState("");
   const [items, setItems] = useState([]);
   const [newitem, setNewItem] = useState("");
-  const [img, setImg] = useState([]);
-  const [newImg, setNewImg] = useState("");
+  const [imgcar, setImg] = useState([]);
   const itemImput = useRef(null);
-  const itemImputimg = useRef(null);
+  const [disabled, setDisabled] = useState(false);
   const history = useHistory();
   const [thumbnail, setThumbnail] = useState(null);
   const [thumbnailError, setThumbnailError] = useState(null);
-  const [selected, setSelected] = useState([]);
   const { mode } = useTheme();
+
+  useEffect(() => {
+    setImg([]);
+  }, []);
   const handleFileChange = async (e) => {
     setThumbnail(null);
     let selected = e.target.files[0];
@@ -41,6 +42,7 @@ export default function Create() {
       setThumbnailError("O arquivo de imagem deve ser menor que 100kb");
       return;
     }
+
     setThumbnailError(null);
     setThumbnail(selected);
     const uploadPath = `thumbnails/${selected.name}`;
@@ -49,11 +51,9 @@ export default function Create() {
     console.log("AQUII", imgUrl);
     user.updateProfile({ photoURL: imgUrl });
     const carroimg = imgUrl;
-    if (carroimg && !imgUrl.includes(carroimg)) {
-      setImg((antigoItem) => [...antigoItem, carroimg]);
-    }
-    // setImg([...img, imgUrl]);
+    setImg((antigoItem) => [...antigoItem, carroimg]);
   };
+  console.log(imgcar);
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -64,7 +64,7 @@ export default function Create() {
       cambio: cambio,
       descricao: descricao,
       items: items,
-      img: img,
+      img: imgcar,
     };
     console.log("aqui", doc);
     try {
@@ -76,16 +76,6 @@ export default function Create() {
       console.log(err);
     }
   }
-  // const handleAddImg = (e) => {
-  //   e.preventDefault();
-  //   const carroimg = newImg.trim();
-  //   if (carroimg && !img.includes(carroimg)) {
-  //     setImg((antigoItem) => [...antigoItem, carroimg]);
-  //   }
-  //   setNewImg("");
-  //   itemImputimg.current.focus();
-  //   console.log("array", img);
-  // };
   const handleAdd = (e) => {
     e.preventDefault();
     const carro = newitem.trim();
@@ -96,10 +86,15 @@ export default function Create() {
     itemImput.current.focus();
     console.log(items);
   };
-
+  useEffect(() => {
+    if (imgcar.length >= 2) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, [imgcar]);
   return (
     <div className={`create ${mode}`}>
-      {/* <h2 className="page-title">Criar novo anuncío</h2> */}
       <form onSubmit={handleSubmit} className="create-form">
         <label>
           <span>Nome do veículo:</span>
@@ -112,14 +107,16 @@ export default function Create() {
         </label>
         <label>
           <span>Fotos:</span>
+
           <input
             id="foto"
             onChange={handleFileChange}
             type="file"
             ref={itemImput}
             required
-            // value={thumbnail}
+            disabled={disabled}
           ></input>
+
           {thumbnailError && <div className="error">{thumbnailError}</div>}
         </label>
         <label>

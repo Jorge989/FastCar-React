@@ -3,13 +3,11 @@ import "./Navbar.css";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useTheme } from "../hooks/useTheme";
-import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 export default function Navbar() {
   const { color } = useTheme();
   const { user } = useAuthContext();
-  const { logout, isPending } = useLogout();
-  console.log("aqui user", user);
+  const { logout } = useLogout();
   return (
     <div className="navbar" style={{ background: color }}>
       <nav>

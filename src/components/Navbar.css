@@ -51,7 +51,7 @@
   display: flex;
   gap: 15px;
   font-size: 18px;
-  margin-right: auto;
+  margin-right: 40px;
 }
 .btn-logout {
   color: #fff;
