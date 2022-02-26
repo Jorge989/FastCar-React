@@ -11,7 +11,7 @@ import Lottie from "react-lottie";
 import * as animationData from "../../assets/orange.json";
 export default function Signup() {
   const { user } = useAuthContext();
-  console.log("usuario signup", user);
+
   useEffect(() => {
     if (user) {
       history.push("/home");
@@ -91,12 +91,12 @@ export default function Signup() {
               </label>
               {!isPending && (
                 <button className="btn-comece" type="submit">
-                  Signup
+                  Cadastrar
                 </button>
               )}
               {isPending && (
                 <button className="btn-comece" disabled>
-                  loading ...
+                  Carregando ...
                 </button>
               )}
               {error && <p>{error}</p>}

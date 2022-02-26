@@ -24,7 +24,7 @@ export const AuthContextProvider = ({ children }) => {
       unsub();
     });
   }, []);
-  console.log("awui", "AuthContext state:", state);
+
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>
       {children}

@@ -20,16 +20,14 @@ export default function Create() {
   const [disabled, setDisabled] = useState(false);
   const history = useHistory();
   const [thumbnail, setThumbnail] = useState(null);
+  const [control, setControl] = useState(false);
   const [thumbnailError, setThumbnailError] = useState(null);
   const { mode } = useTheme();
 
-  useEffect(() => {
-    setImg([]);
-  }, []);
   const handleFileChange = async (e) => {
     setThumbnail(null);
     let selected = e.target.files[0];
-    console.log(selected);
+
     if (!selected) {
       setThumbnailError("Selecione um arquivo");
       return;
@@ -48,15 +46,15 @@ export default function Create() {
     const uploadPath = `thumbnails/${selected.name}`;
     const img = await projectStorage.ref(uploadPath).put(selected);
     const imgUrl = await img.ref.getDownloadURL();
-    console.log("AQUII", imgUrl);
+
     user.updateProfile({ photoURL: imgUrl });
     const carroimg = imgUrl;
     setImg((antigoItem) => [...antigoItem, carroimg]);
   };
-  console.log(imgcar);
+
   async function handleSubmit(e) {
     e.preventDefault();
-
+    setControl(true);
     const doc = {
       nome: nome,
       marca: marca,
@@ -66,16 +64,18 @@ export default function Create() {
       items: items,
       img: imgcar,
     };
-    console.log("aqui", doc);
+
     try {
       await projectFirestore.collection("carroslista").add(doc);
 
-      console.log("aqui", doc);
+      setControl(true);
+
       history.push("/home");
     } catch (err) {
       console.log(err);
     }
   }
+  console.log(control);
   const handleAdd = (e) => {
     e.preventDefault();
     const carro = newitem.trim();
@@ -299,9 +299,20 @@ export default function Create() {
             required
           />
         </label>
-        <button id="btn-submit" className="btn" type="submit">
-          Confirmar
-        </button>
+        {control === false ? (
+          <button id="btn-submit" className="btn" type="submit">
+            Confirmar
+          </button>
+        ) : (
+          ""
+        )}
+        {control === true ? (
+          <button id="btn-submit" className="btn" type="submit">
+            Carregando ...
+          </button>
+        ) : (
+          ""
+        )}
       </form>
     </div>
   );

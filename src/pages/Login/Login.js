@@ -36,12 +36,12 @@ export default function Login() {
         </label>
         {!isPending && (
           <button className="btn" type="submit">
-            Login
+            Confirmar
           </button>
         )}
         {isPending && (
           <button className="btn" disabled>
-            Carregando...
+            Carregando ...
           </button>
         )}
         {error && <p>{error}</p>}

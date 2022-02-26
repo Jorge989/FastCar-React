@@ -15,7 +15,7 @@
   max-width: 1400px;
   padding-left: 0px;
   margin: 0px auto;
-  z-index: 999;
+  z-index: 0;
   position: relative;
 }
 .theme-buttons div {

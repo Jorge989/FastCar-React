@@ -10,7 +10,7 @@ export default function Home() {
   const [isPending, setIsPending] = useState(null);
   const [error, setError] = useState(false);
   const { mode } = useTheme();
-  console.log("data", data);
+
   useEffect(() => {
     setIsPending(true);
     const unsub = projectFirestore.collection("carroslista").onSnapshot(

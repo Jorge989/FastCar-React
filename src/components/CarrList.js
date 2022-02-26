@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 export default function CarrList({ carros }) {
   const { authIsReady, user } = useAuthContext();
   const [pending, setPending] = useState(false);
-  console.log("carros", carros);
+
   const { mode } = useTheme();
   useEffect(() => {
     if (carros.length === 0) {
@@ -22,7 +22,6 @@ export default function CarrList({ carros }) {
     projectFirestore.collection("carroslista").doc(id).delete();
   };
 
-  console.log(pending);
   return (
     <div className="carros-list">
       {carros?.map((carro, index) => {
